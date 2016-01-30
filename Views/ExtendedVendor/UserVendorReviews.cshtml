@@ -1,0 +1,29 @@
+﻿@model RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models.PublicVendorReviewDisplayModel
+@{
+    var vendorReviews = Model.VendorReviews;
+}
+@if(!vendorReviews.Any()){
+<div class="infobox red">You haven't reviewed any vendor yet</div>
+}
+else{
+foreach (var review in vendorReviews)
+{
+    <div class="vendor-review-block">
+        <div class="vendor-details">
+            Vendor : <a href="@Url.RouteUrl("ExtendedVendorDetails", new {SeName = review.VendorSeName})">@review.VendorName</a>   
+            <div class="product-purchased-details">
+              <label>Product Purchased:  </label><a href="@Url.RouteUrl("Product", new {SeName = review.ProductSeName})">@review.ProductName</a>
+              <label>Order# <a href="@Url.RouteUrl("OrderDetails", new { orderId = review.OrderId })">@review.OrderId</a></label>
+            </div>        
+        </div>
+        
+        <div class="review-details">
+             <div class="rating-data"><div class="process-raty" data-readonly="true" data-score="@review.Rating"></div></div>
+            <h3>@review.Title</h3>
+            <div class="review-date">Submitted on @review.CreatedOnUTC.ToString("dd MMMM yyyy")</div>
+            <p>@review.ReviewText</p>
+            
+        </div>        
+    </div>
+}
+}

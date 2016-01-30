@@ -1,0 +1,179 @@
+﻿@model RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models.ExtendedVendorListModel
+@using Nop.Core.Domain.Catalog;
+@using Nop.Web.Framework
+
+
+    <table class="adminContent" id="table-extended-vendor">
+        <tr>
+            <td class="adminTitle" colspan="2">
+                <strong>@T("Plugin.Misc.ExtendedVendor.Fields.Edit")</strong>
+            </td>
+        </tr>   
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AddressLine1):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AddressLine1)
+                @Html.ValidationMessageFor(model => model.AddressLine1)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AddressLine2):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AddressLine2)
+                @Html.ValidationMessageFor(model => model.AddressLine2)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.CountryId):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.CountryId, Model.SelectedCountry)
+                @Html.ValidationMessageFor(model => model.CountryId)
+            </td>
+        </tr>       
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.StateProvinceId):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.StateProvinceId, Model.SelectedStateProvince)
+                @Html.ValidationMessageFor(model => model.StateProvinceId)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.City):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ZipCode):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ZipCode)
+                @Html.ValidationMessageFor(model => model.ZipCode)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.PhoneNumber):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PhoneNumber)
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.TINNumber):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.TINNumber)
+                @Html.ValidationMessageFor(model => model.TINNumber)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ServiceTaxNumber):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ServiceTaxNumber)
+                @Html.ValidationMessageFor(model => model.ServiceTaxNumber)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.VatCST):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.VatCST)
+                @Html.ValidationMessageFor(model => model.VatCST)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ShortCode):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShortCode)
+                @Html.ValidationMessageFor(model => model.ShortCode)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ReviewsEnabled):
+            </td>
+            <td class="adminData">
+                @Html.CheckBoxFor(model => model.ReviewsEnabled)
+                @Html.ValidationMessageFor(model => model.ReviewsEnabled)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.HelpfulnessEnabled):
+            </td>
+            <td class="adminData">
+                @Html.CheckBoxFor(model => model.HelpfulnessEnabled)
+                @Html.ValidationMessageFor(model => model.HelpfulnessEnabled)
+            </td>
+        </tr>    
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.CommissionPercentage):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.CommissionPercentage)
+                @Html.ValidationMessageFor(model => model.CommissionPercentage)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.LogoId):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.LogoId)
+                @Html.ValidationMessageFor(model => model.LogoId)
+            </td>
+        </tr>     
+        <tr>
+            <td colspan="2" align="left">
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.VendorId)
+                <input type="button" id="save-extended-vendor" class="t-button" value="Save Extended Properties" />
+            </td>
+        </tr>
+    </table>
+    
+    <script type="text/javascript">
+        $(function () {
+
+            $('#save-extended-vendor').click(function () {
+                $.ajax({
+                    cache: false,
+                    type: 'POST',
+                    url: '@Url.RouteUrl("ExtendedVendorSaveVendor")',
+                    data: $("#table-extended-vendor *").serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                                              
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to update vendor info.');
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    
+    
+   

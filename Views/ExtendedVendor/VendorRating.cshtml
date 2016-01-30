@@ -1,0 +1,6 @@
+﻿@model RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models.VendorRatingModel
+@Html.Partial("ExtendedVendor/_Includes")
+<div style="margin: 10px 0">
+    <div class="process-raty" data-readonly="true" data-score="@Model.AverageRating"></div>
+    <div>Average rating @Model.AverageRating for a total of <a href="@Url.RouteUrl("ExtendedVendorDetails", new {SeName = Model.VendorSeName})">@Model.TotalRatings review(s)</a></div>
+</div>

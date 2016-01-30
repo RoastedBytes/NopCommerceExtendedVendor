@@ -1,0 +1,8 @@
+﻿Group: Roasted Bytes
+FriendlyName: Extended Vendors
+SystemName: RoastedBytes.Plugin.ExtendedVendor
+Version: 1.0
+SupportedVersions: 3.60
+Author: Roasted Bytes
+DisplayOrder: 1
+FileName: RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.dll

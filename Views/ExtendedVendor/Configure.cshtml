@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "";
+}
+@model ConfigurationModel
+@using RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models;
+@using Nop.Web.Framework;
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="adminContent">    
+   
+        <tr>
+            <td class="adminTitle">
+                @Html.OverrideStoreCheckboxFor(model => model.DefaultCommissionPercentage_OverrideForStore, model => model.DefaultCommissionPercentage, Model.ActiveStoreScopeConfiguration)
+                @Html.NopLabelFor(model => model.DefaultCommissionPercentage):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.DefaultCommissionPercentage)
+                @Html.ValidationMessageFor(model => model.DefaultCommissionPercentage)
+            </td>
+        </tr>
+         	 
+        <tr>
+            <td colspan="2" width="100%">
+                <input type="submit" name="save" class="t-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+    </table>
+    
+}

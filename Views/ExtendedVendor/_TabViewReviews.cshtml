@@ -1,0 +1,139 @@
+﻿@model int
+@{
+    var defaultGridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
+    var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
+}
+@using Nop.Web.Framework;
+@using Nop.Core.Infrastructure;
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var kTabs = $("#vendor-edit").data("kendoTabStrip");
+        kTabs.append({ text: "Vendor Reviews", content: " " });
+        $("#vendor-reviews").appendTo($(kTabs.contentElement(3)));
+    });
+</script>
+<div id="vendor-reviews">
+    <div id="apexol-data-grid-reviews"></div>
+    
+</div>
+<script>
+    $(document).ready(function () {
+        $("#apexol-data-grid-reviews").kendoGrid({
+            dataSource: {
+                type: "json",
+                transport: {
+                    read: {
+                        url: "@Html.Raw(Url.Action("ListReviewsAdmin", "ExtendedVendor", new RouteValueDictionary() { { "Namespaces", "RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Controllers" }, { "area", "" } }))",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        VendorId: @Model
+                    }
+                },
+                update: {
+                    url:"@Html.Raw(Url.Action("UpdateReview", "ExtendedVendor", new RouteValueDictionary() { { "Namespaces", "RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Controllers" }, { "area", "" } }))",
+                type: "POST",
+                dataType: "json"
+            },
+            destroy: {
+                url: "@Html.Raw(Url.Action("DeleteReview", "ExtendedVendor", new RouteValueDictionary() { { "Namespaces", "RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Controllers" }, { "area", "" } }))",
+            type: "POST",
+            dataType: "json"
+        }
+        },
+        schema: {
+        data: "Data",
+        total: "Total",
+        errors: "Errors",
+        model: {
+                id: "Id",
+                fields: {
+                OrderId: { editable: false, type: "string" },
+                ProductName: { editable: false, type: "string" },
+                Title: { editable: true, type: "string" },
+                ReviewText: { editable: true, type: "string" },
+                Rating: { editable: true, type: "number" },
+                IsApproved: { editable: true, type: "boolean" },
+                Id: { editable: false, type: "number" }
+                }
+        }
+        },
+    requestEnd: function (e) {
+        if (e.type == "update") {
+            this.read();
+        }
+    },
+    error: function (e) {
+        display_kendoui_grid_error(e);
+        // Cancel the changes
+        this.cancelChanges();
+    },
+    pageSize: @(defaultGridPageSize),
+        serverPaging: true,
+    serverFiltering: true,
+    serverSorting: true
+    },
+    pageable: {
+            refresh: true,
+            pageSizes: [@(gridPageSizes)]
+    },
+    editable: {
+            confirmation: false,
+            mode: "popup"
+    },
+    scrollable: false,
+        columns: [{
+            field: "OrderId",
+            title: "@T("Plugin.Misc.ExtendedVendor.Fields.Order")",
+        template: "<a href='/admin/order/edit/#: OrderId #' target='_blank'>#: OrderId #</a>",
+    width: 50                          
+    }, {
+        field: "ProductName",
+        title: "@T("Plugin.Misc.ExtendedVendor.Fields.Product")",
+        width: 200
+    }, {
+    field: "Title",
+        title: "@T("Plugin.Misc.ExtendedVendor.Fields.Title")",
+    width: 200
+    }, {
+        field: "ReviewText",
+        title: "@T("Plugin.Misc.ExtendedVendor.Fields.ReviewText")",
+        width: 300,
+        editor: function(container, options){
+            $('<textarea name="' + options.field + '" style="width:'+ container.width  + 'px;height:200px" />')
+                .appendTo(container);
+        }
+    }, {
+    field: "Rating",
+        title: "@T("Plugin.Misc.ExtendedVendor.Fields.Rating")",
+    editor: function (container, options) {
+        $('<input name="' + options.field + '"/>')
+                .appendTo(container)
+                .kendoNumericTextBox({
+                    format: "0",
+                    decimals: 0,
+                    min:1,
+                    max:5
+                });
+    },
+    width: 50
+    }, 
+    {
+        field: "IsApproved",
+        title: "@T("Plugin.Misc.ExtendedVendor.Fields.IsApproved")",
+        width: 50
+    }
+                     , {
+    command: [{
+        name: "edit",
+        text: "@T("Admin.Common.Edit")"
+    }, {
+        name: "destroy",
+        text: "@T("Admin.Common.Delete")"
+    }],
+        width: 200
+    } ]
+    });
+    });
+    </script>

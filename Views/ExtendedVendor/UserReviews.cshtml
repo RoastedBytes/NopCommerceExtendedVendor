@@ -1,0 +1,106 @@
+﻿@model RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models.CustomerReviewSummaryModel
+@{
+    Layout = "~/Views/Shared/_ColumnsTwo.cshtml";
+
+    Html.Partial("ExtendedVendor/_Includes");
+//title
+    Html.AddTitleParts("Review Center");
+}
+@section left
+{
+    <div class="review-summary-block-container">
+        <div class="review-summary-block">
+           <h3>Product Review Summary</h3>
+           <table class="table-rating-summary">
+                @for(var index = 0; index < 5; index++){
+                    <tr>
+                        <td>
+                            @(5-index) star
+                        </td>
+                        <td>
+                            <div class="process-raty" data-readonly="true" data-score="@(5 - index)"></div>
+                        </td>
+                        <td class="count">
+                            @Model.ProductRatingCounts[index]
+                        </td>
+                    </tr>
+                }
+               <tr class="total-row">
+                    <td colspan="2">
+                        Total Products Rated
+                    </td>
+                   <td class="count">
+                       @Model.TotalProductReviews
+                   </td>
+                </tr>
+                @if(Model.LastRatedProductReview != null){
+                <tr class="last-rated-row">
+                    <td colspan="3">
+                        Last Rated: @Model.LastRatedProductReview.CreatedOnUtc.ToString("dd MMMM yyyy")
+                    </td>
+                </tr>
+                }
+           </table>
+        </div>
+        <div class="review-summary-block">
+           <h3>Vendor Review Summary</h3>
+            <table class="table-rating-summary">
+                @for(var index = 0; index < 5; index++){
+                    <tr>
+                        <td>
+                            @(5-index) star
+                        </td>
+                        <td>
+                            <div class="process-raty" data-readonly="true" data-score="@(5 - index)"></div>
+                        </td>
+                        <td class="count">
+                            @Model.VendorRatingCounts[index]
+                        </td>
+                    </tr>
+                }
+                 <tr class="total-row">
+                    <td colspan="2">
+                        Total Vendors Rated
+                    </td>
+                     <td class="count">
+                         @Model.TotalVendorReviews
+                     </td>
+                </tr>
+                @if(Model.LastRatedVendorReview != null){
+                <tr class="last-rated-row">
+                    <td colspan="3">
+                        Last Rated: @Model.LastRatedVendorReview.CreatedOnUTC.ToString("dd MMMM yyyy")
+                    </td>
+                </tr>
+                }
+           </table>
+        </div>
+    </div>
+}
+@if(Model.IsRedirection){
+<div class="infobox green">Bingo, Your review has been saved!!</div>
+}
+<div class="page-title">
+        <h2>Your Ratings & Reviews</h2>
+</div>
+<ul id="review-tabs-ul" class="cui-tabs">
+    <li>
+        <a href="#product-reviews" data-url="@Url.RouteUrl("ExtendedVendorReviewCenter", new { Type = "product" })">Product Reviews</a>
+    </li>
+    <li>
+        <a href="#vendor-reviews" data-url="@Url.RouteUrl("ExtendedVendorReviewCenter", new { Type = "vendor" })">Vendor Reviews</a>
+    </li>
+    <li>
+        <a href="#pending-reviews" data-url="@Url.RouteUrl("ExtendedVendorReviewCenter", new { Type = "pending" })">Pending Reviews</a>
+    </li>
+</ul>
+<div id="product-reviews" class="cui-tab-content"></div>
+<div id="vendor-reviews" class="cui-tab-content"></div>
+<div id="pending-reviews" class="cui-tab-content"></div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#review-tabs-ul").apexolTabs();
+
+    })
+</script>

@@ -1,0 +1,82 @@
+﻿@model RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models.PublicReviewEditModel
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+    Html.Partial("ExtendedVendor/_Includes");
+}
+@using Nop.Web.Framework
+@using Nop.Web.Framework.Security.Captcha
+@using RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models;
+<div class="page-title">
+    <h1>Edit Product & Vendor Reviews</h1>
+</div>
+@using (Html.BeginForm())
+{
+    <div class="message-error">@Html.ValidationSummary(true)</div>
+    <div class="fieldset">
+        <div class="review-page-product-overview">
+            <img src="@Model.ProductImageUrl" width="50" />
+            <div class="overview-details">
+                <a href="@Url.RouteUrl("Product", new {SeName = Model.ProductSeName})" class="overview-title">@Model.ProductName</a>
+                <div class="hidden">
+                    @Html.Action("TopicBlock", "Topic", new { systemName = "ProductReviewGuidelines" })
+                </div>
+            </div>
+        </div>
+        <div class="form-fields">
+            <div class="title">Product Review</div>
+            <div class="inputs">
+                @Html.LabelFor(model => model.AddProductReviewModel.Title)
+                @Html.TextBoxFor(model => model.AddProductReviewModel.Title)
+                @Html.ValidationMessageFor(model => model.AddProductReviewModel.Title)
+            </div>
+            <div class="inputs">
+                @Html.LabelFor(model => model.AddProductReviewModel.ReviewText)
+                @Html.TextAreaFor(model => model.AddProductReviewModel.ReviewText)
+                @Html.ValidationMessageFor(model => model.AddProductReviewModel.ReviewText)
+            </div>
+            <div class="review-rating inputs">
+                @Html.LabelFor(model => model.VendorReviewListModel.Rating, new { style = "margin-top:0px" }, ":")
+                <div class="process-raty" data-score="@Model.AddProductReviewModel.Rating" data-target="#product-rating-hint" data-scorename="@Html.FieldNameFor(model => model.AddProductReviewModel.Rating)"></div>
+                <div id="product-rating-hint" class="process-raty-hint"></div>
+            </div>
+            @if (Model.AddProductReviewModel.DisplayCaptcha)
+            {
+            <div class="captcha-box">
+                @Html.Raw(Html.GenerateCaptcha())
+            </div>
+            }
+        </div>
+
+        <div class="review-page-vendor-overview">
+            <div class="overview-details">
+                <a href="@Url.RouteUrl("ExtendedVendorDetails", new {SeName = Model.VendorSeName})" class="overview-title">@Model.VendorName</a>
+                <div class="hidden">
+                    @Html.Action("TopicBlock", "Topic", new { systemName = "VendorReviewGuidelines" })
+                </div>
+            </div>
+        </div>
+        <div class="form-fields">
+            <div class="title">Vendor Review</div>
+            <div class="inputs">
+                @Html.LabelFor(model => model.VendorReviewListModel.Title)
+                @Html.TextBoxFor(model => model.VendorReviewListModel.Title)
+                @Html.ValidationMessageFor(model => model.VendorReviewListModel.Title)
+            </div>
+            <div class="inputs">
+                @Html.LabelFor(model => model.VendorReviewListModel.ReviewText)
+                @Html.TextAreaFor(model => model.VendorReviewListModel.ReviewText)
+                @Html.ValidationMessageFor(model => model.VendorReviewListModel.ReviewText)
+            </div>
+            <div class="review-rating inputs">
+                @Html.LabelFor(model => model.VendorReviewListModel.Rating, new { style = "margin-top:0px" }, ":")
+                <div class="process-raty" data-score="@Model.VendorReviewListModel.Rating" data-target="#vendor-rating-hint" data-scorename="@Html.FieldNameFor(model => model.VendorReviewListModel.Rating)"></div>
+                <div id="vendor-rating-hint" class="process-raty-hint"></div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" name="add-review" class="button write-product-review-button" value="Submit Review" />
+        </div>
+    </div>
+
+}

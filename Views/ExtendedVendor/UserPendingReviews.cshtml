@@ -1,0 +1,33 @@
+﻿@model RoastedBytes.Nop.Plugin.Misc.ExtendedVendor.Models.PublicPendingReviewDisplayModel
+@{
+    var pendingReviews = Model.PendingReviews;
+}
+@if(pendingReviews.Count() == 0){
+<div class="infobox red">You don't have any pending reviews.</div>
+}
+else{
+foreach (var review in pendingReviews)
+{
+    var orderModel = review.Key;
+    var productModelList = review.Value;
+ 
+    <div class="pending-review-block">
+        <div class="order-details">
+            Order# <a href="@Url.RouteUrl("OrderDetails", new { orderId = orderModel.OrderId })">@orderModel.OrderId</a>
+        </div>
+        
+        <div class="review-details">
+            @foreach(var pm in productModelList){
+                <div class="pending-product-review">
+                    <img src="@pm.ProductImageUrl" width="50" />
+                    <div class="rating-links">
+                        <a class="product-link" href="@Url.RouteUrl("Product", new { SeName = pm.ProductSeName })">@pm.ProductName</a> 
+                        <a class="button small" href="@Url.RouteUrl("ExtendedVendorEditReviewPublic", new { OrderId = orderModel.OrderId, ProductId = pm.ProductId })">Rate Now</a>
+                    </div>
+                    
+                </div>
+            }
+        </div>        
+    </div>
+}
+}

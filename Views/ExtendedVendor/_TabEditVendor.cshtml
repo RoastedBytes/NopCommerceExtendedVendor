@@ -1,0 +1,11 @@
+﻿@model int
+<script type="text/ecmascript">
+    $(document).ready(function () {
+        var kTabs = $("#vendor-edit").data("kendoTabStrip");
+        kTabs.append({ text: "Additional Information", content: " " });
+        $("#edit-vendor-form").appendTo($(kTabs.contentElement(2)));
+    });
+</script>
+<div id="edit-vendor-form">
+    @Html.Action("EditVendor","ExtendedVendor", new {Id = Model})
+</div>

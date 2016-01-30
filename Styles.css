@@ -1,0 +1,272 @@
+﻿.review-summary-block-container {
+    color: gray;
+}
+
+.review-summary-block {
+    background-color: #eee;
+}
+
+    .review-summary-block h3 {
+        font-size: 14px;
+        text-align: center;
+        padding: 10px 0px;
+        border-bottom: solid 2px white;
+    }
+
+table.table-rating-summary {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    table.table-rating-summary tr {
+        border-bottom: solid 2px white;
+    }
+
+        table.table-rating-summary tr td {
+            padding: 5px;
+        }
+        table.table-rating-summary tr td.count {
+            text-align: right;
+            padding-right: 10px;
+        }
+        table.table-rating-summary tr.last-rated-row {
+            text-align: center;
+            font-weight: bold;
+        }
+
+.cui-tabs {
+    float: left;
+    width: 100%;
+    border-bottom: solid 1px #cbcbcb;
+}
+
+    .cui-tabs li {
+        float: left;
+        list-style-type: none;
+        font-size: 15px;
+        margin-left: 15px;
+    }
+
+        .cui-tabs li.current {
+            border: solid 1px #cbcbcb;
+            margin-bottom: -5px;
+            border-bottom: none;
+            background-color: white;
+        }
+
+        .cui-tabs li a {
+            padding: 15px;
+            float: left;
+        }
+
+            .cui-tabs li a:hover {
+                text-decoration: none;
+            }
+
+.cui-tab-content {
+    padding: 15px 0px;
+    clear: both;
+}
+
+.product-review-block {
+    float: left;
+    display: block;
+    clear: both;
+    margin-bottom: 20px;
+    border-bottom: dotted 1px #cbcbcb;
+    padding-bottom: 15px;
+}
+
+    .product-review-block .product-details {
+        float: left;
+        width: 280px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .product-review-block .review-details {
+        float: left;
+        width: 425px;
+        color: gray;
+        font-size: 14px;
+        line-height: 20px;
+        background-color: #eee;
+        padding: 10px;
+    }
+
+        .product-review-block .review-details .review-date {
+            font-size: 12px;
+        }
+
+        .product-review-block .review-details .rating-data {
+            float: right;
+        }
+
+    .product-review-block .product-details a {
+        font-size: 15px;
+        width: 195px;
+        display: block;
+        margin: auto;
+    }
+
+    .product-review-block .rating-data .process-raty img {
+        width: 12px;
+    }
+
+.vendor-review-block {
+    float: left;
+    display: block;
+    clear: both;
+    margin-bottom: 20px;
+    border-bottom: dotted 1px #cbcbcb;
+    padding-bottom: 15px;
+}
+
+    .vendor-review-block .vendor-details {
+        float: left;
+        width: 280px;
+    }
+
+    .vendor-review-block .review-details {
+        float: left;
+        width: 425px;
+        color: gray;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 10px;
+        background-color: #eee;
+    }
+
+        .vendor-review-block .review-details .review-date {
+            font-size: 12px;
+        }
+
+        .vendor-review-block .review-details .rating-data {
+            float: right;
+        }
+
+    .vendor-review-block .vendor-details img {
+        float: left;
+    }
+
+    .vendor-review-block .vendor-details {
+        font-size: 15px;
+        float: left;
+        padding: 10px;
+    }
+
+    .vendor-review-block .product-purchased-details {
+        font-size: 12px;
+        font-family: Arial;
+        margin-top: 16px;
+        font-weight: bold;
+        line-height: 19px;
+    }
+
+        .vendor-review-block .product-purchased-details label {
+            display: block;
+        }
+
+    .vendor-review-block .rating-data .process-raty img {
+        width: 12px;
+    }
+
+.pending-review-block {
+    float: left;
+    display: block;
+    clear: both;
+    margin-bottom: 20px;
+    border-bottom: dotted 1px #cbcbcb;
+    padding-bottom: 15px;
+}
+
+    .pending-review-block .order-details {
+        float: left;
+        width: 280px;
+    }
+
+    .pending-review-block .review-details {
+        float: left;
+        width: 480px;
+        color: gray;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+        .pending-review-block .review-details .pending-product-review {
+            padding: 10px;
+            background-color: #eee;
+            border-bottom: solid 2px white;
+            float: left;
+        }
+
+            .pending-review-block .review-details .pending-product-review img {
+                float: left;
+            }
+
+            .pending-review-block .review-details .pending-product-review .rating-links {
+                display: block;
+                padding-left: 60px;
+            }
+
+                .pending-review-block .review-details .pending-product-review .rating-links a.product-link {
+                    display: block;
+                    font-size: 17px;
+                    margin-bottom: 15px;
+                }
+
+    .pending-review-block .order-details {
+        font-size: 15px;
+        float: left;
+        padding: 10px;
+    }
+
+    .pending-review-block .product-purchased-details {
+        font-size: 12px;
+        font-family: Arial;
+        margin-top: 16px;
+        font-weight: bold;
+        line-height: 19px;
+    }
+
+        .pending-review-block .product-purchased-details label {
+            display: block;
+        }
+
+    .pending-review-block .rating-data .process-raty img {
+        width: 12px;
+    }
+
+.review-page-product-overview, .review-page-vendor-overview {
+    clear: both;
+    display: block;
+    height: 70px;
+    padding: 10px 0px 0px 10px;
+    border: solid 1px #cbcbcb;
+}
+
+    .review-page-product-overview a.overview-title, .review-page-vendor-overview a.overview-title {
+        font-size: 17px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .review-page-product-overview img, .review-page-vendor-overview img {
+        float: left;
+    }
+
+    .review-page-product-overview .overview-details, .review-page-vendor-overview .overview-details {
+        float: left;
+        width: 400px;
+        margin-left: 10px;
+        display: block;
+    }
+
+.review-rating .process-raty {
+    display: inline-block;
+}
+.process-raty-hint {
+    font-size: 15px;
+    display: inline;
+    padding-left: 10px;
+}
